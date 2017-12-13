@@ -22,6 +22,7 @@ class ApplicationSession {
 		self.userPersistence = UserPersistence(coreDataManager: coreDataManager)
 		self.optionsPersistence = OptionsPersistence(coreDataManager: coreDataManager)
         self.getUserFromCoreData()
+        self.getOptionsFromCoreData()
 	}
 	
 	private var _isUserLoggedIn: Bool = false
@@ -29,6 +30,8 @@ class ApplicationSession {
 	var isUserLoggedIn: Bool {
         return _isUserLoggedIn
 	}
+    
+
     
     func getUserFromCoreData(){
         if let userFromCoreData = userPersistence.getUser() {
@@ -44,23 +47,20 @@ class ApplicationSession {
         if let optionsFromCoreData = optionsPersistence.getOptions() {
             options = optionsFromCoreData
         }
-        else{
-            let optionsData = OptionsData(randomNumbers: false, randomTiles: true)
-            options.populate(optionsData: optionsData)
-        }
     }
 	
     func attemptLogin(name: String, _ complete: (Bool) -> Void) {
         
         print("Name Entered: \(name)")
         
-        //let semaphore = DispatchSemaphore(value: 0)
+        let semaphore = DispatchSemaphore(value: 0)
         userPersistence.setUser(name: name) {
-            //semaphore.signal()
+            semaphore.signal()
         }
-//        if semaphore.wait(timeout: .now() + 3) == .timedOut {
-//            print("semaphore timeout after user call")
-//        }
+        if semaphore.wait(timeout: .now() + 3) == .timedOut {
+            print("semaphore timeout after setUser call in attemptLogin")
+        }
+        user = userPersistence.getUser()
         
         _username = name
 
@@ -68,4 +68,6 @@ class ApplicationSession {
         
 		complete(isUserLoggedIn)
 	}
+    
+    
 }

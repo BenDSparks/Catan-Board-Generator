@@ -19,7 +19,7 @@ class OptionsPersistence {
                 } else {
                     options = Options(context: backgroundContext)
                 }
-                try options.populate(optionsData: optionsData)
+                options.populate(optionsData: optionsData)
                 
                 try backgroundContext.save()
                 

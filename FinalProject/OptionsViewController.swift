@@ -75,7 +75,7 @@ class OptionsViewController: UIViewController {
     
     
     @IBAction func generateBoardButtonPressed(_ sender: Any) {
-        print("Generating Board")
+        print("Generating Board Pressed")
         delegate?.generateBoard()
     }
     

@@ -21,13 +21,33 @@ class OptionsModel {
         self.session = session
         
         if let options = self.session.optionsPersistence.getOptions() {
+            print("retrived options from core data")
             randomTilesToggle = options.randomTiles
             randomNumbersToggle = options.randomNumbers
+            session.getOptionsFromCoreData()
         }
         else {
             randomNumbersToggle = false
             randomTilesToggle = true
+            
+            //create and save options for first time.
+            print("creating options in core data")
+            
+            let options = OptionsData(randomNumbers: randomNumbersToggle, randomTiles: randomTilesToggle)
+            
+            let semaphore = DispatchSemaphore(value: 0)
+            session.optionsPersistence.setOptions(optionsData: options) {
+                semaphore.signal()
+            }
+            if semaphore.wait(timeout: .now() + 3) == .timedOut {
+                print("semaphore timeout after setOptions call in OptionsModel")
+            }
+            
+            session.getOptionsFromCoreData()
+            
         }
+        
+        
 
     }
     

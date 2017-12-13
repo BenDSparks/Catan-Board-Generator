@@ -13,10 +13,13 @@ class MainViewController: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
         
+        print("checking if user is loged in")
         
 		if session.isUserLoggedIn {
             print("presenting options view controller")
-			presentOptionsController()
+            //just for testing
+            presentBoardController()
+			//presentOptionsController()
 		} else {
             print("presenting login controller")
 			presentLoginController()
@@ -37,6 +40,7 @@ class MainViewController: UIViewController {
 		loginVC.delegate = self
 		
         if let currentVC = childViewControllers.first, currentVC !== loginVC {
+            print("currenVC != loginVC")
             transition(from: currentVC, to: loginVC, duration: 1.5, setup: {
                 loginVC.view.alpha = 0.0
             }, animation: {
@@ -44,6 +48,7 @@ class MainViewController: UIViewController {
                 currentVC.view.alpha = 0.0
             })
         } else {
+            print("currentVC == loginVC")
             addFullScreen(controller: loginVC, animationDuration: 0.5, setup: {
                 loginVC.view.alpha = 0.0
             }, animation: {
@@ -64,13 +69,25 @@ class MainViewController: UIViewController {
         optionsVC.delegate = self
         
         if let loginVC = childViewControllers.first as? LoginViewController {
+            print("login to options")
             transition(from: loginVC, to: optionsVC, duration: 1.5, setup: {
                 optionsVC.view.alpha = 0.0
             }, animation: {
                 optionsVC.view.alpha = 1.0
                 loginVC.view.alpha = 0.0
             })
-        } else {
+        }
+        if let boardVC = childViewControllers.first as? BoardViewController {
+            print("board to options")
+            transition(from: boardVC, to: optionsVC, duration: 1.5, setup: {
+                optionsVC.view.alpha = 0.0
+            }, animation: {
+                optionsVC.view.alpha = 1.0
+                boardVC.view.alpha = 0.0
+            })
+        }
+        else {
+            
             addFullScreen(controller: optionsVC, animationDuration: 0.5, setup: {
                 optionsVC.view.alpha = 0.0
             }, animation: {
@@ -80,7 +97,7 @@ class MainViewController: UIViewController {
     }
     
     func presentBoardController() {
-        
+        print("presentBoardController Print")
         let boardStoryboard = UIStoryboard(name: "Board", bundle: Bundle.main)
         
         
@@ -95,13 +112,18 @@ class MainViewController: UIViewController {
         
         
         if let optionsVC = childViewControllers.first as? OptionsViewController {
+            print("transitioning from optionsVC to boardVC")
             transition(from: optionsVC, to: boardVC, duration: 1.5, setup: {
                 boardVC.view.alpha = 0.0
             }, animation: {
                 boardVC.view.alpha = 1.0
                 optionsVC.view.alpha = 0.0
             })
-        } else {
+        }
+        else {
+            
+            
+            print("transitiong to boardVC")
             addFullScreen(controller: boardVC, animationDuration: 0.5, setup: {
                 boardVC.view.alpha = 0.0
             }, animation: {
@@ -146,7 +168,7 @@ extension MainViewController: OptionsViewControllerDelegate {
     }
     
     func generateBoard(){
-        print("generate board in main view controller")
+        print("generate board from options in main")
         presentBoardController()
     }
     
@@ -154,13 +176,13 @@ extension MainViewController: OptionsViewControllerDelegate {
 
 extension MainViewController: BoardViewControllerDelegate {
     
-//    func logout() {
-//        print("logout in main view controller")
-//        presentLoginController()
-//    }
-//
-//    func generateBoard(){
-//        print("generate board in main view controller")
-//    }
+    func goToOptions() {
+        
+        
+        
+        print("presenting options controller")
+        presentOptionsController()
+    }
+
     
 }

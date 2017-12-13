@@ -12,7 +12,6 @@
 		4A339B201FCCB01500234F4F /* FinalProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4A339B1E1FCCB01500234F4F /* FinalProject.xcdatamodeld */; };
 		4A339B221FCCB01500234F4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A339B211FCCB01500234F4F /* Assets.xcassets */; };
 		4A339B251FCCB01500234F4F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A339B231FCCB01500234F4F /* LaunchScreen.storyboard */; };
-		4A339B301FCCB1B800234F4F /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A339B2F1FCCB1B800234F4F /* Board.swift */; };
 		4A339B321FCCB1E600234F4F /* Hexagon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A339B311FCCB1E600234F4F /* Hexagon.swift */; };
 		4AA1B3F01FDF176800212910 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA1B3EF1FDF176800212910 /* CoreDataManager.swift */; };
 		4AA1B3F21FDF197B00212910 /* UserPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA1B3F11FDF197B00212910 /* UserPersistence.swift */; };
@@ -43,7 +42,6 @@
 		4A339B211FCCB01500234F4F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4A339B241FCCB01500234F4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4A339B261FCCB01500234F4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4A339B2F1FCCB1B800234F4F /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		4A339B311FCCB1E600234F4F /* Hexagon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hexagon.swift; sourceTree = "<group>"; };
 		4AA1B3EF1FDF176800212910 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		4AA1B3F11FDF197B00212910 /* UserPersistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPersistence.swift; sourceTree = "<group>"; };
@@ -124,7 +122,6 @@
 		4A339B2D1FCCB06000234F4F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				4A339B2F1FCCB1B800234F4F /* Board.swift */,
 				4A339B311FCCB1E600234F4F /* Hexagon.swift */,
 			);
 			name = Classes;
@@ -287,7 +284,6 @@
 				4AA1B40D1FDF854800212910 /* OptionsViewController.swift in Sources */,
 				4AA1B40F1FDFA36700212910 /* OptionsModel.swift in Sources */,
 				4AA1B4071FDF313300212910 /* UIViewExtension.swift in Sources */,
-				4A339B301FCCB1B800234F4F /* Board.swift in Sources */,
 				4A339B201FCCB01500234F4F /* FinalProject.xcdatamodeld in Sources */,
 				4AA1B4191FE046D600212910 /* ArrayExtension.swift in Sources */,
 				4AA1B4131FDFB4F500212910 /* OptionsExtension.swift in Sources */,
@@ -428,7 +424,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = UMSL.FinalProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -442,7 +438,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = UMSL.FinalProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
