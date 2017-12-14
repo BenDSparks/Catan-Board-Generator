@@ -1,10 +1,4 @@
-struct TileData {
-    var xIndex: Int
-    var yIndex: Int
-    var resourceType: ResourceType
-    var tileNumberToken: Int?
-    
-}
+
 //board coords
 //        (0,-2)(1,-2)(2,-2)
 //     (-1,-1)(0,-1)(1,-1)(2,-1)
@@ -39,6 +33,12 @@ class BoardModel{
         
         
         
+        
+    }
+    
+    func getBoardData() -> BoardData {
+        
+       return BoardData(numberOrder: tileOrder, resourceOrder: tileDeck)
         
     }
     

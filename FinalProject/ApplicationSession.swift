@@ -5,8 +5,10 @@ class ApplicationSession {
 	let userPersistence: UserPersistence
 	let optionsPersistence: OptionsPersistence
     
+    
     var user: User!
     var options: Options!
+    var boards = [BoardData]()
 	
 	private var _username: String?
     

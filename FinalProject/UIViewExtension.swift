@@ -24,21 +24,16 @@ extension UIView {
 	}
     
 
-    func rotate360Degrees(duration: CFTimeInterval = 1.0, complete: () -> Void) {
+    func rotate360Degrees(duration: CFTimeInterval = 1.0) {
         
         let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
         rotateAnimation.fromValue = 0.0
         rotateAnimation.toValue = CGFloat( .pi * 2.0)
         rotateAnimation.duration = duration
         
-//        if let delegate: AnyObject = completionDelegate {
-//            rotateAnimation.delegate = delegate
-//        }
+
         self.layer.add(rotateAnimation, forKey: nil)
         
-        complete()
-        
-        print("test2")
     }
     
 }

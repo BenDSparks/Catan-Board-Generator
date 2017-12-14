@@ -77,7 +77,7 @@ class MainViewController: UIViewController {
                 loginVC.view.alpha = 0.0
             })
         }
-        if let boardVC = childViewControllers.first as? BoardViewController {
+        else if let boardVC = childViewControllers.first as? BoardViewController {
             print("board to options")
             transition(from: boardVC, to: optionsVC, duration: 1.5, setup: {
                 optionsVC.view.alpha = 0.0
@@ -97,7 +97,6 @@ class MainViewController: UIViewController {
     }
     
     func presentBoardController() {
-        print("presentBoardController Print")
         let boardStoryboard = UIStoryboard(name: "Board", bundle: Bundle.main)
         
         
@@ -120,6 +119,15 @@ class MainViewController: UIViewController {
                 optionsVC.view.alpha = 0.0
             })
         }
+        else if let boardCollectionVC = childViewControllers.first as? BoardCollectionViewController {
+            print("transitioning from optionsVC to boardVC")
+            transition(from: boardCollectionVC, to: boardVC, duration: 1.5, setup: {
+                boardVC.view.alpha = 0.0
+            }, animation: {
+                boardVC.view.alpha = 1.0
+                boardCollectionVC.view.alpha = 0.0
+            })
+        }
         else {
             
             
@@ -130,6 +138,43 @@ class MainViewController: UIViewController {
                 boardVC.view.alpha = 1.0
             })
         }
+        
+    }
+    
+    func presentBoardCollectionController() {
+        let boardStoryboard = UIStoryboard(name: "BoardCollection", bundle: Bundle.main)
+        
+        
+        let boardCollectionVC: BoardCollectionViewController = boardStoryboard.instantiateViewController(withIdentifier: "BoardCollectionVC") as! BoardCollectionViewController
+        
+        
+        
+        boardCollectionVC.session = session
+        boardCollectionVC.model = BoardModel(session: session)
+        boardCollectionVC.delegate = self
+        
+        
+        
+        if let boardVC = childViewControllers.first as? BoardViewController {
+            print("transitioning from boardVC to boardCollectionVC")
+            transition(from: boardVC, to: boardCollectionVC, duration: 1.5, setup: {
+                boardVC.view.alpha = 0.0
+            }, animation: {
+                boardVC.view.alpha = 1.0
+                boardVC.view.alpha = 0.0
+            })
+        }
+            
+        else {
+            
+
+            addFullScreen(controller: boardCollectionVC, animationDuration: 0.5, setup: {
+                boardCollectionVC.view.alpha = 0.0
+            }, animation: {
+                boardCollectionVC.view.alpha = 1.0
+            })
+        }
+        
         
     }
     
@@ -176,13 +221,31 @@ extension MainViewController: OptionsViewControllerDelegate {
 
 extension MainViewController: BoardViewControllerDelegate {
     
+    func save(board: BoardData) {
+        
+    }
+    
+    
     func goToOptions() {
-        
-        
-        
         print("presenting options controller")
         presentOptionsController()
     }
+    
+    func goToBoardCollection(){
+        print("presenting board collection controller")
+        presentBoardCollectionController()
+    }
 
+    
+}
+
+extension MainViewController: BoardCollectionViewControllerDelegate {
+    
+
+    func goToBoardCreation(){
+        print("presenting board view controller from collection")
+        presentBoardController()
+    }
+    
     
 }

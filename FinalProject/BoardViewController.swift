@@ -3,6 +3,8 @@ import UIKit
 protocol BoardViewControllerDelegate: class {
 
     func goToOptions()
+    func goToBoardCollection()
+    func save(board: BoardData)
 }
 
 class BoardViewController: UIViewController {
@@ -22,7 +24,9 @@ class BoardViewController: UIViewController {
     @IBOutlet weak var waterViewSideways: NSLayoutConstraint!
     @IBOutlet weak var waterViewNormal: NSLayoutConstraint!
     
+    @IBOutlet weak var boardCollectionButton: UIButton!
     
+    @IBOutlet weak var saveButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,9 +40,7 @@ class BoardViewController: UIViewController {
         
         
         for tileView in self.tileViews {
-            tileView.rotate360Degrees(complete: {
-                print("test1")
-            })
+            tileView.rotate360Degrees(duration: 0.8)
         }
         
         
@@ -48,10 +50,25 @@ class BoardViewController: UIViewController {
     
     @IBAction func optionsButtonPressed(_ sender: Any) {
         
+        
         delegate?.goToOptions()
         
     }
     
+    @IBAction func boardCollectionButtonPressed(_ sender: Any) {
+        
+        delegate?.goToBoardCollection()
+        
+    }
+    
+    @IBAction func saveButtonPressed(_ sender: Any) {
+        
+        
+        let board = model.getBoardData()
+        session.boards.append(board)
+//        delegate?.save(board: board)
+        
+    }
     
     func deleteBoard(){
         for tileView in tileViews {

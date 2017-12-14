@@ -93,9 +93,8 @@ class Hexagon: UIView {
     
     func setNumberToken(numberToken: Int) {
         
-        
-        
-        let circlePath = UIBezierPath(arcCenter: CGPoint(x: 32.5, y: 37.5), radius: CGFloat(12), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
+
+        let circlePath = UIBezierPath(arcCenter: CGPoint(x: width/2, y: height/2), radius: CGFloat(12), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
         
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = circlePath.cgPath
