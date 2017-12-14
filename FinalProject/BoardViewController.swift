@@ -16,41 +16,34 @@ class BoardViewController: UIViewController {
     weak var delegate: BoardViewControllerDelegate?
     
     @IBOutlet weak var waterView: UIView!
-    
-
     @IBOutlet var tileViews: [UIView]!
-    
     @IBOutlet weak var optionsButton: UIButton!
-    
-    
-    
     @IBOutlet weak var generateButton: UIButton!
+    @IBOutlet weak var waterViewSideways: NSLayoutConstraint!
+    @IBOutlet weak var waterViewNormal: NSLayoutConstraint!
     
-    //var boardData: [[BoardData?]] = [[nil,nil,nil,nil,nil],[nil,nil,nil,nil,nil],[nil,nil,nil,nil,nil],[nil,nil,nil,nil,nil],[nil,nil,nil,nil,nil]]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
-        
-//        for i in 0...18 {
-//
-//        let hexagon = Hexagon(frame: CGRect(x: 0, y: 0, width: Int(width), height: Int(height)), resourceType: .brick, numberToken: i, width: width, height: height)
-//
-//        tileViews[i].addSubview(hexagon)
-//
-//
-//        }
-        
+        waterViewSideways.isActive = false
         createBoard()
         
     }
     
     @IBAction func generateButtonPressed(_ sender: Any) {
         
+        
+        
+        for tileView in self.tileViews {
+            tileView.rotate360Degrees(complete: {
+                print("test1")
+            })
+        }
+        
+        
         deleteBoard()
         createBoard()
-        
     }
     
     @IBAction func optionsButtonPressed(_ sender: Any) {

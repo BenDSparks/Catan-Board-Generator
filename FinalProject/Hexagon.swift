@@ -95,6 +95,21 @@ class Hexagon: UIView {
         
         
         
+        let circlePath = UIBezierPath(arcCenter: CGPoint(x: 32.5, y: 37.5), radius: CGFloat(12), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
+        
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.path = circlePath.cgPath
+        
+        //change the fill color 255,227,159
+        shapeLayer.fillColor = UIColor(red: 255/255.0, green: 227/255.0, blue: 159/255.0, alpha: 1.0).cgColor
+        //you can change the stroke color
+        shapeLayer.strokeColor = UIColor.black.cgColor
+        //you can change the line width
+        shapeLayer.lineWidth = 0.5
+        
+        layer.addSublayer(shapeLayer)
+        
+        
         
         let numberLabel = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: 21))
         numberLabel.textColor = UIColor.black

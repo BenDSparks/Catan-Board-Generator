@@ -22,4 +22,23 @@ extension UIView {
 		self.safeAreaLayoutGuide.topAnchor.constraint(equalTo: superView.safeAreaLayoutGuide.topAnchor).isActive = true
 		self.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: superView.safeAreaLayoutGuide.bottomAnchor).isActive = true
 	}
+    
+
+    func rotate360Degrees(duration: CFTimeInterval = 1.0, complete: () -> Void) {
+        
+        let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
+        rotateAnimation.fromValue = 0.0
+        rotateAnimation.toValue = CGFloat( .pi * 2.0)
+        rotateAnimation.duration = duration
+        
+//        if let delegate: AnyObject = completionDelegate {
+//            rotateAnimation.delegate = delegate
+//        }
+        self.layer.add(rotateAnimation, forKey: nil)
+        
+        complete()
+        
+        print("test2")
+    }
+    
 }
