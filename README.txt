@@ -1,6 +1,9 @@
 Final Project
 Ben Sparks
 
+This project required us to make a swift project that uses certain features. Each feature was worth a point value and the project required a total of 30 points to meet its criteria.
+
+
 UIController X 3, Options, Board, Board Collection, I'm not counting the login that you made, I just plan to do more with this app later so I wanted that as my starting point - 3
 
 Custom UIView, Hexagon - 3
