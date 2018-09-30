@@ -16,11 +16,11 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-		NotificationCenter.default.addObserver(forName: NSNotification.Name.UITextFieldTextDidChange, object: userNameTextField, queue: nil, using: textFieldTextChanged(_:))
+		NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object: userNameTextField, queue: nil, using: textFieldTextChanged(_:))
         
 		userNameTextField.delegate = self
         
-		userNameTextField.attributedPlaceholder = NSAttributedString(string: "Username", attributes: [.foregroundColor: UIColor.white, NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20)])
+		userNameTextField.attributedPlaceholder = NSAttributedString(string: "Username", attributes: [.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20)])
         
 		loginButton.isEnabled = false
         

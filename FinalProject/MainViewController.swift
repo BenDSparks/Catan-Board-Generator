@@ -39,7 +39,7 @@ class MainViewController: UIViewController {
         
 		loginVC.delegate = self
 		
-        if let currentVC = childViewControllers.first, currentVC !== loginVC {
+        if let currentVC = children.first, currentVC !== loginVC {
             print("currenVC != loginVC")
             transition(from: currentVC, to: loginVC, duration: 1.5, setup: {
                 loginVC.view.alpha = 0.0
@@ -68,7 +68,7 @@ class MainViewController: UIViewController {
         optionsVC.model = OptionsModel(session: session)
         optionsVC.delegate = self
         
-        if let loginVC = childViewControllers.first as? LoginViewController {
+        if let loginVC = children.first as? LoginViewController {
             print("login to options")
             transition(from: loginVC, to: optionsVC, duration: 1.5, setup: {
                 optionsVC.view.alpha = 0.0
@@ -77,7 +77,7 @@ class MainViewController: UIViewController {
                 loginVC.view.alpha = 0.0
             })
         }
-        else if let boardVC = childViewControllers.first as? BoardViewController {
+        else if let boardVC = children.first as? BoardViewController {
             print("board to options")
             transition(from: boardVC, to: optionsVC, duration: 1.5, setup: {
                 optionsVC.view.alpha = 0.0
@@ -110,7 +110,7 @@ class MainViewController: UIViewController {
         
         
         
-        if let optionsVC = childViewControllers.first as? OptionsViewController {
+        if let optionsVC = children.first as? OptionsViewController {
             print("transitioning from optionsVC to boardVC")
             transition(from: optionsVC, to: boardVC, duration: 1.5, setup: {
                 boardVC.view.alpha = 0.0
@@ -119,7 +119,7 @@ class MainViewController: UIViewController {
                 optionsVC.view.alpha = 0.0
             })
         }
-        else if let boardCollectionVC = childViewControllers.first as? BoardCollectionViewController {
+        else if let boardCollectionVC = children.first as? BoardCollectionViewController {
             transition(from: boardCollectionVC, to: boardVC, duration: 1.5, setup: {
                 boardVC.view.alpha = 0.0
             }, animation: {
@@ -151,7 +151,7 @@ class MainViewController: UIViewController {
         
         
         
-        if let boardVC = childViewControllers.first as? BoardViewController {
+        if let boardVC = children.first as? BoardViewController {
             print("transitioning from boardVC to boardCollectionVC")
             transition(from: boardVC, to: boardCollectionVC, duration: 1.5, setup: {
                 boardCollectionVC.view.alpha = 0.0
